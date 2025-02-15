@@ -6,20 +6,32 @@ import random
 # ✅ ローマ字入力の許容パターン
 romaji_variants = {
     "chi": ["chi", "ti"],
+    "cchi": ["cchi", "tti", "ltchi"],
     "shi": ["shi", "si"],
     "ji": ["ji", "zi"],
     "je": ["zile", "je"],
     "tsu": ["tsu", "tu"],
     "fu": ["fu", "hu"],
+    "cha": ["tya", "cha"],
     "tya": ["tya", "cha"],
+    "chu": ["tyu", "chu"],
     "tyu": ["tyu", "chu"],
-    "tyo": ["tyo", "cho"],
+    "cho": ["tyo", "cho", "ccho", "ttyo"],  # ✅ 追加
+    "tyo": ["tyo", "cho", "ccho", "ttyo"],  # ✅ 追加
+    "ccho": ["ccho", "ttyo", "cho", "tyo"],  # ✅ 追加
+    "ttyo": ["ttyo", "ccho", "cho", "tyo"],  # ✅ 追加
     "sha": ["sha", "sya"],
     "shu": ["shu", "syu"],
     "sho": ["sho", "syo"],
+    "ja": ["jya", "ja", "zya", "zilya"],
     "jya": ["jya", "ja", "zya", "zilya"],
-    "jyu": ["jyu", "ju", "zyu", "zilyu"],
+    "ju": ["jyu", "ju", "zyu", "zilyu"],
+    "jyu": ["jyu", "zyu"],  # ✅ 追加
+    "zyu": ["zyu", "jyu"],  # ✅ 追加
     "jyo": ["jyo", "jo", "zyo", "zilyo"],
+    "zyo": ["zyo", "jo", "jyo"],  # ✅ 追加
+    "jo": ["jo", "zyo", "jyo"],  # ✅ 追加
+    "jyo": ["jyo", "jo", "zyo"],  # ✅ 追加
     "chan": ["chan", "tyan"]  # ✅ tyan と chan を許容
 }
 
@@ -28,55 +40,55 @@ shifted = {chr(i): chr(i).upper() for i in range(ord('a'), ord('z') + 1)}
 words = {
     'IMT':'ichinosechanmajitenshi',
     'ドイツ生まれ永遠の十三歳':'doitsuumareeiennojyuusansai',
-    'む一みんロル教室':'muichiminrorukyoushitsu',
-    'むーみんカスタムまだかな':'muuminkasutamumadakana',
+    'む一みんロル塾':'muichiminrorujuku',
+    'むーみんカスタムまだかな':'mu-minkasutamumadakana',
     'おきつね工房':'okitsunekoubou',
     'きっぽちゃんとマダミスしたい':'kippochantomadamisshitai',
     '菓子工房異国屋':'kashikoubouikokuya',
     '推し夫婦ぽっぽあぬるlove':'oshifuufupoppoanurulove',
-    'てぃる教':'tirukyou',
+    'てぃる教':'telirukyou',
     '推しに推される世界線':'oshiniosareresekaisen',
     'やきにく博士だね':'yakinikuhakasedane',
     'やきにくチャンネル':'yakinikuchanneru',
-    'ぽにー痩せろ':'poniiyasero',
-    'カービンの達人ぽにー':'kaabinnnotatsujinponii',
+    'ぽにー痩せろ':'poni-yasero',
+    'カービンの達人ぽにー':'ka-binnnotatsujinponi-',
     'べるめも最高':'berumemosaikou',
-    'べるちゃんと行く飛鳥クルーズ':'beruchantoikuasukakuruuzu',
+    'べるちゃんと行く飛鳥クルーズ':'beruchantoikuasukakuru-zu',
     'おちゅきみコロナ':'ochukimikorona',
     'お刺身野菜cvつきみ':'osashimiyasaicvtsukimi',
-    'お邪魔さんは練習にもならない':'ojamasanharenhuunimonaranai',
+    'お邪魔さんは練習にもならない':'ojamasanharensyuunimonaranai',
     'お邪魔さんのお茶増します':'ojamasannoochamashimasu',
     'ぬるのおまちゅり':'nurunoomatsuri',
     '迷探偵ぬるまゅ':'meitanteinurumayu',
     'もは恋最強':'mohakoisaikyou',
     'あずくんスノボ上手い':'azukunsunoboumai',
-    'ティアスリービジネスパートナー':'tiasuriibijinesupa-tona-',
+    'ティアスリービジネスパートナー':'tiasuri-bijinesupa-tona-',
     'とおるん':'toorun',
     'ごみくず野郎':'gomikuzuyarou',
     'ごみくず実況秀逸':'gomikuzujikkyoushuuitsu',
     'ことさん結婚おめでとう':'kotosankekkonomedetou',
     '最後のキンタリズムこと':'saigonokintarizumukoto',
-    'じぃじさんhappybirthday':'jiijisanhappybirthday',
+    'じぃじさんhappybirthday':'jilijisanhappybirthday',
     '宇宙忍者しろくま':'uchuuninjashirokuma',
     'sena配信せえすなせえ':'senahaishinseesunasee',
-    'senaさんはお尻からウルトを出す':'senasanhaoshirikaraurutoodasu',
+    'senaはお尻からウルトを出す':'senahaoshirikaraurutoodasu',
     'ゆりやんの二の腕もちもち':'yuriyannnoninoudemochimochi',
     'ユリやんカスタムまだかな':'yuriyannkasutamumadakana',
     'まめたのお尻もちもち':'mametanooshirimochimochi',
-    'ダイエッターまめた':'daiettaamameta',
+    'ダイエッターまめた':'daietta-mameta',
     '宗教団体キンタリズム':'shuukyoudantaikintarizumu',
     'リアルスタイル':'riarusutairu',
-    'コーチングされ中しゅぷりーむ':'koochingusarechuushupuriimu',
+    'コーチングされ中しゅぷりーむ':'ko-chingusarechuushupuri-mu',
     'メイド服のしいな':'meidofukunoshiina',
     '記念日耐久パズル男しいな':'kinenbitaikyuupazuruotokoshiina',
     'ゆうゆうさんはイケメン':'yuuyuusanhaikemen',
     '優しさの権化ゆうゆう':'yasashisanogongeyuuyuu',
-    'イケボのるーまる':'ikebonoruumaru',
-    '飲酒のるーまる':'inshunoruumaru',
-    'ビートマニアじじい':'biitomaniajijii',
-    'キンバリーマスターじじい':'kinbariimasutaajijii',
+    'イケボのるーまる':'ikebonoru-maru',
+    '飲酒のるーまる':'inshunoru-maru',
+    'ビートマニアじじい':'bi-tomaniajijii',
+    'キンバリーマスターじじい':'kinbari-masuta-jijii',
     'もりさんちの子供になりたい':'morisanchinokodomoninaritai',
-    '星のやに行ったらもりさんに報告':'hoshinoyaniittaramorisannihoukoku',
+    '星のや行く時もりさんに報告':'hoshinoyaikutokimorisannihoukoku',
     'みんなのもちもちなのね':'minnanomochimochinanone',
     'もちもちなのねは持ち帰り':'mochimochinanonehamochikaeri',
     'うひニキと絶対遊ぶぞ':'uhinikitozettaiasubuzo',
@@ -84,49 +96,49 @@ words = {
     '土の家を壊すなはとぷ':'tsuchinoiewokowasunahatopu',
     'はとぷのお料理教室':'hatopunooriyourikyoushitsu',
     'ぽよの霊圧が':'poyonoreiatsuga',
-    'ぽよにラーメンを食べさせる':'poyoniraamenwotabesasaru',
+    'ぽよにラーメンを食べさせる':'poyonira-menwotabesaseru',
     'ぶろさん国家試験合格めでたい':'burosankokkashikengoukakumedetai',
-    'コーチングし中ぶろっこりーじゃむ':'koochingushichuuburokkoriijamu',
-    'ミモさん広島へゆく':'mimosannhirosimayuku',
+    'コーチングし中ぶろっこりー':'ko-chingushichuuburokkori-',
+    'ミモさん広島へゆく':'mimosannhirosimaheyuku',
     '仕事前コメントのmimo':'shigotomaekomentonomimo',
     '双子のパパぱんだっち':'futagonopapapandacchi',
     '意外とイケボぱんだっち':'igaitoikebopandacchi',
     'いとうちゃんの眼鏡になりたい':'itouchannomeganeninaritai',
     'いとうちゃんのATMになりたい':'itouchannoATMninaritai',
-    'ネイルのプロえりー':'neirunopuroerii',
-    '英会話えりーちゃんと頑張ってます':'eikaiwaeriichantoganbattemasu',
+    'ネイルのプロえりー':'neirunopuroeri-',
+    '英会話えりーと頑張ってます':'eikaiwaeri-toganbattemasu',
     '山口県のかずやさん':'yamaguchikennokazuyasan',
     'かずやさんちの猫可愛い':'kazuyasanchinonekokawaii',
     'ひかべるカスタム':'hikaberukasutamu',
     'サイゼリアのひかさん':'saizerianohikasan',
     'ロシア出張中のエスク':'roshiashucchouchuunoesuku',
     'みんなのパパエスク':'minnanopapaesuku',
-    'ゼロキルのハリボー':'zerokirunoharibou',
-    'ストロクで初心者狩りハリボー':'sutorokudeshoshinshagariharibou',
+    'ゼロキルのハリボー':'zerokirunoharibo-',
+    'ストロクで初心者狩りハリボー':'sutorokudeshoshinshagariharibo-',
     '鳴かず飛ばずれんちん':'nakazutobazurenchin',
     'れんちん痩せろ':'renchinyasero',
     'リバウンド上等魔装青年':'ribaundojoutoumasouseinen',
-    '魔装さんとなんかゲームしよ':'masousantonankageemushiyo',
+    '魔装さんとなんかゲームしよ':'masousantonankage-mushiyo',
     'おしゃべりすぎ子ぶた':'oshaberisugikobuta',
     'たくさんスキンくれる子ぶた':'takusansukinkurerukobuta',
     'かががじぇ':'kagagaje',
     'ホワイトだいすきあきちゃん':'howaitodaisukiakichan',
-    'たぬの歌を聴けっ':'tanunoutawokike',
+    'たぬの歌を聴け':'tanunoutawokike',
     '連続視聴回数記録更新中おゆき':'renzokushichoukaisuukirokukoushinchuuoyuki',
     '魔法少女名探偵ぴまちゃん':'mahoushoujomeitanteipimachan',
-    'ありけり系女子ぴーまん':'arikerikeijoshipiiman',
+    'ありけり系女子ぴーまん':'arikerikeijoshipi-man',
     'メンヘラ三銃士さや':'menherasanjuushisaya',
-    '四十回スノボに行く女さや':'yonjuukaisunoboniikuonnasaya',
+    'スノボのプロすぎるさや':'sunobonopurosugirusaya',
     '葉っぱの男しゃりあ':'happanootokosharia',
     'れおん会に呼ばれないしゃりあ':'reonkainiyobarenaisharia',
-    'プロゲーマーりゅうきまん代表':'purogeemaaryuukimandaihyou',
+    'プロゲーマーりゅうきまん代表':'puroge-ma-ryuukimandaihyou',
     '二十万投げた男りゅうき':'nijyuumannagetaotokoryuuki',
-    'いつのまにか関東にようこそばな':'itsunomanikakantouniyoukosobana',
-    'めちゃくちゃ理数系ぽいバナ':'mechakucharisuukeipoibana'
+    '関東にようこそばな':'kantouniyoukosobana',
+    '理数系ぽいバナ':'risuukeipoibana'
 }
 
 SCORE_FILE = "scores.json"
-TIME_LIMIT = 60  # ✅ 60秒 → 5秒 に変更
+TIME_LIMIT = 340  # ✅ 60秒 → 5秒 に変更
 font = pyxel.Font("k8x12.bdf")
 
 
@@ -229,6 +241,7 @@ class TypingGame:
                 if self.is_valid_input(self.input_text, self.show_roman):
                     self.next_word()
 
+
     def get_valid_next_inputs(self):
         """✅ 次に入力すべき文字を取得"""
         valid_inputs = self.expand_variants(self.show_roman)
@@ -240,22 +253,25 @@ class TypingGame:
                     valid_chars.add(variant[next_index])
         return valid_chars
 
+
     def is_valid_input(self, input_text, target_text):
         """✅ ユーザーの入力が完全一致しているかチェック"""
         valid_inputs = self.expand_variants(target_text)
         return input_text in valid_inputs
 
-    def expand_variants(self, text):
-        """✅ ローマ字の代替表記を考慮してすべてのパターンを生成"""
-        variations = [text]
+    def expand_variants(self,text):
+        """ ローマ字の代替表記を考慮してすべてのパターンを生成 """
+        variations = {text}
         for key, variants in romaji_variants.items():
-            new_variations = []
+            new_variations = set()
             for variation in variations:
                 if key in variation:
                     for variant in variants:
-                        new_variations.append(variation.replace(key, variant))
-            variations.extend(new_variations)
-        return variations
+                        new_variations.add(variation.replace(key, variant))
+            variations.update(new_variations)
+        return variations  # ✅ 重複を排除
+
+
 
     def update_game_over(self):
         """✅ リザルト画面でEnterを押すと最初の画面に戻る"""
