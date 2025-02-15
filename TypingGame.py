@@ -138,7 +138,7 @@ words = {
 }
 
 SCORE_FILE = "scores.json"
-TIME_LIMIT = 340  # ✅ 60秒 → 5秒 に変更
+TIME_LIMIT = 60  # ✅ 60秒 → 5秒 に変更
 font = pyxel.Font("k8x12.bdf")
 
 
