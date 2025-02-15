@@ -76,7 +76,6 @@ words = {
     'ユリやんカスタムまだかな':'yuriyannkasutamumadakana',
     'まめたのお尻もちもち':'mametanooshirimochimochi',
     'ダイエッターまめた':'daietta-mameta',
-    '宗教団体キンタリズム':'shuukyoudantaikintarizumu',
     'リアルスタイル':'riarusutairu',
     'コーチングされ中しゅぷりーむ':'ko-chingusarechuushupuri-mu',
     'メイド服のしいな':'meidofukunoshiina',
