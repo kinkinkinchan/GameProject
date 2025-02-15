@@ -8,6 +8,7 @@ romaji_variants = {
     "chi": ["chi", "ti"],
     "shi": ["shi", "si"],
     "ji": ["ji", "zi"],
+    "je": ["zile", "je"],
     "tsu": ["tsu", "tu"],
     "fu": ["fu", "hu"],
     "tya": ["tya", "cha"],
@@ -16,9 +17,9 @@ romaji_variants = {
     "sha": ["sha", "sya"],
     "shu": ["shu", "syu"],
     "sho": ["sho", "syo"],
-    "jya": ["jya", "ja", "zya"],
-    "jyu": ["jyu", "ju", "zyu"],
-    "jyo": ["jyo", "jo", "zyo"],
+    "jya": ["jya", "ja", "zya", "zilya"],
+    "jyu": ["jyu", "ju", "zyu", "zilyu"],
+    "jyo": ["jyo", "jo", "zyo", "zilyo"],
     "chan": ["chan", "tyan"]  # ✅ tyan と chan を許容
 }
 
